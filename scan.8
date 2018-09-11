@@ -1,0 +1,103 @@
+;****************************************************************************************
+;* Copyright (C) 2018 Tinashe Mutandagayi                                               *
+;*                                                                                      *
+;* This file is part of the MT-Operating System source code. The author(s) of this file *
+;* is/are not liable for any damages, loss or loss of information, deaths, sicknesses   *
+;* or other bad things resulting from use of this file or software, either direct or    *
+;* indirect.                                                                            *
+;* Terms and conditions for use and distribution can be found in the license file named *
+;* LICENSE.TXT. If you distribute this file or continue using it,                       *
+;* it means you understand and agree with the terms and conditions in the license file. *
+;* binding this file.                                                                   *
+;*                                                                                      *
+;* Happy Coding :)                                                                      *
+;****************************************************************************************
+
+Uninit:
+LFNCheckSum DB  ?
+LFNStatus   DB  ?
+ScanMode    DB  ?,?,?,?
+
+NumHeads    DD  ?
+SectorsPerTrack DD  ?
+Cylinders   DD  ?
+
+FirstExt    DD  ?
+ExtBase     DD  ?
+ExtPart     DD  ?
+ExtTrack    DD  52  DUP(?)
+FSSectors   DD  ?
+DSSectors   DD  ?
+
+TimeOut     DD  ?
+
+AfterFAT        DD  ?
+NumBadClusters  DD  ?
+NumLostClusters DD  ?
+NumCrossClusters    DD  ?
+FATSectors  DD  ?
+NumClusters DD  ?
+CurX        DD  ?
+CurY        DD  ?
+FATType     DD  ?
+BytesPerSector      DD  ?
+BytesPerCluster     DD  ?
+SectorsPerCluster   DD  ?
+NumFATs     DD  ?
+RootSector  DD  ?
+RootCluster DD  ?
+DataSector  DD  ?
+FATSector   DD  ?
+FAT2Sector  DD  ?
+DirBytes    DD  ?
+
+StartSector DD  ?
+FirstDirCluster DD  ?
+CurDirCluster   DD  ?
+CurDirPosition  DD  ?
+NextDirCluster  DD  ?
+
+DirNesting      DD  ?
+CurDirSector    DD  ?
+
+FirstFileCluster    DD  ?
+CurFileCluster  DD  ?
+PathPTR     DD  ?
+
+PartTypes   DD  12*26   DUP(?)
+
+CorrectOption   DW  ?
+Drive       DB  ?
+Partition   DB  ?
+
+_TargetPath DB  128 DUP(?)
+ALIGN 4
+
+DSSector    DD  ?
+FSSector    DD  ?
+GSSector    DD  ?
+DSSectorCount   DW  ?
+FSSectorCount   DW  ?
+GSSectorCount   DW  ?
+
+ALIGN 4
+
+DiskParams  DB  (SIZE DiskParam)    DUP(?)
+DiskPacket  DB  (SIZE DiskStruct)   DUP(?)
+PrintBuffer DB  512     DUP(?)
+
+
+RecoverHandle   DW      ?
+RecoverSize     DD      ?
+
+CurFileSize     DD  ?
+ALIGN 4
+PartStart       DD  ?
+PathLen         DD  ?
+CurPath         DB  4096    DUP(?)
+PathBackLink    DD  2048   DUP(?)
+
+ALIGN 16
+DiskBuffer      DB  (32000-$) AND 0FFFFh    DUP(?)
+UninitEnd:
+ECHO $
